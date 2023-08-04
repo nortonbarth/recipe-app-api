@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+    app:
+      build:
+        context: . #Current directory
+        args:
+          - DEV=true
+      ports:
+        - "8000:8000" #Local machine <-> Server
+      volumes:
+        - ./app:/app  #Mapping my system to server (keep sync)
+      command: >
+        sh -c "python manage.py runserver 0.0.0.0:8000"
