@@ -11,7 +11,7 @@ EXPOSE 8000
 
 ARG DEV=false
 RUN apk upgrade --force-missing-repositories
-RUN apk add --force --no-cache synapse  postgresql postgresql-libs postgresql-client libpq-dev gcc 
+RUN apk add --force --no-cache postgresql-client
 RUN apk add --update  --force --no-cache --virtual .tmp-build-deps \
         build-base postgresql-dev musl-dev 
 
