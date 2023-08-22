@@ -10,10 +10,10 @@ WORKDIR /app
 EXPOSE 8000
 
 ARG DEV=false
-RUN apk upgrade --force-missing-repositories
+# RUN apk upgrade --force-missing-repositories
 RUN apk add --force --no-cache postgresql-client
 RUN apk add --update  --force --no-cache --virtual .tmp-build-deps \
-        build-base postgresql-dev musl-dev 
+        build-base postgresql-dev musl-dev
 
 RUN python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
