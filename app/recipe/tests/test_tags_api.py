@@ -60,13 +60,11 @@ class PrivateTagsApiTests(TestCase):
         user2 = create_user(email='user2@example.com')
         Tag.objects.create(user=user2, name="Fruity")
 
-        tag = Tag.objects.create(user=self.user, name='Comfortable food')
+        tags = Tag.objects.create(user=self.user, name='Comfortable food')
 
         res = self.client.get(TAGS_URL)
-        serializer = TagSerializer(res, many=True)
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(len(res.data), 1)
-        print(str(res.data[0]))
-        self.assertEqual(serializer.data[0]['name'], tag.name)
-        self.assertEqual(res.data[0]['id'], tag.id)
+        self.assertEqual(res.data[0]['name'], tags.name)
+        self.assertEqual(res.data[0]['id'], tags.id)
